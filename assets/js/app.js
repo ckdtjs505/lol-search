@@ -18,7 +18,7 @@ class app {
     this.$input.addEventListener("keyup", e => {
       e.preventDefault();
       if (e.keyCode === 13) {
-        console.log(this.$input.value);
+        let user = getUserData(this.$input.value);
         this.$input.value = "";
         // api 호출
       }
