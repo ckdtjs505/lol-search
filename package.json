@@ -1,0 +1,23 @@
+{
+  "name": "lol-search",
+  "version": "1.0.0",
+  "description": "clone lol og.gg",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "http-server -c-1 -P https://kr.api.riotgames.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ckdtjs505/lol-search.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ckdtjs505/lol-search/issues"
+  },
+  "homepage": "https://github.com/ckdtjs505/lol-search#readme",
+  "dependencies": {
+    "http-server": "^0.12.1"
+  }
+}
