@@ -20,7 +20,8 @@ class app {
       e.preventDefault();
       if (e.keyCode === 13) {
         // api 호출
-        let data = await getUserData(this.$input.value);
+        this.data = await getUserData(this.$input.value);
+        new SearchImg(this.app, this.data);
         this.$input.value = "";
       }
     });
