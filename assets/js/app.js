@@ -21,13 +21,12 @@ class app {
   }
 
   render() {
-    // input 생성
     const div = document.createElement("div");
     div.innerHTML = ` 
       <input class ="search" placeholder ="사진을 검색하시오"/>
     `;
 
-    const resultImg = document.createElement("div");
+    const resultImg = document.createElement("ul");
     resultImg.classList.add("resultImg");
 
     this.app.append(div);

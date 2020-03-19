@@ -13,11 +13,10 @@ class SearchImg {
     this.data.forEach(ele => {
       const { id, urls } = ele;
       szHtml += `
-        <div id="${id}"> 
-          <img src="${urls.thumb}"> <img/>
-        <div/>`;
+        <li > 
+          <img src="${urls.thumb}" id="${id}" > </img>
+        </li>`;
     });
-
     this.$resultSearchBox.innerHTML = szHtml;
   }
 }
