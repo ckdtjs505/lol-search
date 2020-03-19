@@ -2,23 +2,22 @@ class SearchImg {
   constructor(ele, data) {
     this.ele = ele;
     this.data = data;
-    this.buildUI();
+    this.render();
   }
 
-  buildUI() {
+  // react set state 함수 분석
+  render() {
     // input 생성
-    const resultSearchBox = document.createElement("div");
-
+    this.$resultSearchBox = document.querySelector(".resultImg");
+    let szHtml = "";
     this.data.forEach(ele => {
-      const { id, alt_description, urls } = ele;
-      const img = document.createElement("div");
-      img.innerHTML = `
-          <div id="${id}"> 
-              <img src="${urls.thumb}"> <img/>
-          <div/>
-      `;
-      resultSearchBox.append(img);
+      const { id, urls } = ele;
+      szHtml += `
+        <div id="${id}"> 
+          <img src="${urls.thumb}"> <img/>
+        <div/>`;
     });
-    this.ele.append(resultSearchBox);
+
+    this.$resultSearchBox.innerHTML = szHtml;
   }
 }
