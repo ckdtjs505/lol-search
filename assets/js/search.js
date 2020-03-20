@@ -3,6 +3,16 @@ class SearchImg {
     this.ele = ele;
     this.data = data;
     this.render();
+    this.bindEventDefault();
+  }
+
+  bindEventDefault() {
+    const imgs = document.querySelectorAll("img");
+    imgs.forEach(ele => {
+      ele.addEventListener("click", function() {
+        console.log(ele);
+      });
+    });
   }
 
   render() {
@@ -12,11 +22,11 @@ class SearchImg {
     // szHtml을 만들어서 안에 있는 html을 덮었느는 형식으로 바꿨다.
     // 내가 원하는 모형은 아닌데 ㅠㅠ 이게 맞는지 모르겠다
     let szHtml = "";
-    this.data.forEach(ele => {
+    this.data.results.forEach(ele => {
       const { id, urls } = ele;
       szHtml += `
-        <li > 
-          <img src="${urls.thumb}" id="${id}" > </img>
+        <li >
+          <img src="${urls.thumb}" id="${id}" class="img" > </img>
         </li>`;
     });
     this.$resultSearchBox.innerHTML = szHtml;

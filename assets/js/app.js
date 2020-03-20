@@ -29,7 +29,19 @@ class app {
     const resultImg = document.createElement("ul");
     resultImg.classList.add("resultImg");
 
+    const modal = document.createElement("div");
+    modal.classList.add("on");
+    modal.innerHTML = ` 
+      <div class="modal"> 
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p> discription </p>
+        <div/>
+      <div/>
+    `;
+
     this.app.append(div);
     this.app.append(resultImg);
+    this.app.append(modal);
   }
 }
