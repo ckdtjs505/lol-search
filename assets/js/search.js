@@ -7,10 +7,15 @@ class SearchImg {
   }
 
   bindEventDefault() {
+    // 2020-03-20 모든 img에 클릭시 modal이 나오게 구현하고 싶었는데..
+    // 그러기 위해서는 생성자에서 생성한 this.data에 접근해야하는데
+    // this가 이벤트가 발생한 지점을 가리키다 보니 this.data값이 없다고 한다.
+    // 어떻게 다시 바꿀지 생각해보자.
     const imgs = document.querySelectorAll("img");
     imgs.forEach(ele => {
       ele.addEventListener("click", function() {
-        console.log(ele);
+        const filterData = this.data.results;
+        console.log(filterData);
       });
     });
   }

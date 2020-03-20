@@ -29,6 +29,10 @@ class app {
     const resultImg = document.createElement("ul");
     resultImg.classList.add("resultImg");
 
+    // 2020-03-20 모달을 간단하게 구현해보았다.
+    // https://www.w3schools.com/howto/howto_css_modals.asp
+    // 간단한 모달이지만 위의 페이지를 꼼꼼하게 참조해서 구현해보자.
+    // 반드시 이해하고 구현하기.
     const modal = document.createElement("div");
     modal.classList.add("on");
     modal.innerHTML = ` 
