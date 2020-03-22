@@ -33,12 +33,6 @@ class app {
     this.modal = document.createElement("div");
     this.modal.id = "myModal";
     this.modal.classList.add("modal");
-    this.modal.innerHTML = ` 
-        <div class="modal-content">
-          <span class="close">&times;</span>
-          <p> discription </p>
-        <div/>
-    `;
     this.app.append(this.modal);
   }
 

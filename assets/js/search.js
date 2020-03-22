@@ -14,29 +14,16 @@ class SearchImg {
     // this가 이벤트가 발생한 지점을 가리키다 보니 this.data값이 없다고 한다.
     // api에서 불러왔던 데이터를 재사용 하고싶은데ㅠ
     // 어떻게 다시 바꿀지 생각해보자.
+
+    // 2020-03-22 api를 재사용하는 방법으로 화살표 함수를 이용하면 된다. 이유 알기
+    // modal data를 쉽게 변겅하는 방법을 고민해보자
     const imgs = document.querySelectorAll("img");
     imgs.forEach(ele => {
       ele.addEventListener("click", () => {
-        this.modal.classList.add("on");
+        const eleData = this.data.results.filter(data => data.id === ele.id);
+        new Modal(this.ele, this.modal, eleData[0]);
       });
     });
-
-    const closeBtn = document.querySelector(".close");
-    closeBtn.addEventListener("click", () => {
-      this.modal.classList.remove("on");
-    });
-
-    window.onclick = event => {
-      if (event.target == this.modal) {
-        this.modal.classList.remove("on");
-      }
-    };
-
-    window.onkeyup = event => {
-      if (event.keyCode === 27) {
-        this.modal.classList.remove("on");
-      }
-    };
   }
 
   render() {
