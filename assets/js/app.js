@@ -57,7 +57,11 @@ class app {
     $input.addEventListener("keyup", async e => {
       e.preventDefault();
       if (e.keyCode === 13) {
-        new SearchImg(this.app, (this.data = await getUserData($input.value)));
+        new SearchImg(
+          this.app,
+          this.modal,
+          (this.data = await getUserData($input.value))
+        );
         $input.value = "";
       }
     });

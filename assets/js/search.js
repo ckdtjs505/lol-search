@@ -1,7 +1,9 @@
 class SearchImg {
-  constructor(ele, data) {
+  constructor(ele, modal, data) {
     this.ele = ele;
+    this.modal = modal;
     this.data = data;
+
     this.render();
     this.bindEventDefault();
   }
@@ -14,11 +16,27 @@ class SearchImg {
     // 어떻게 다시 바꿀지 생각해보자.
     const imgs = document.querySelectorAll("img");
     imgs.forEach(ele => {
-      ele.addEventListener("click", function() {
-        const filterData = this.data.results;
-        console.log(filterData);
+      ele.addEventListener("click", () => {
+        this.modal.classList.add("on");
       });
     });
+
+    const closeBtn = document.querySelector(".close");
+    closeBtn.addEventListener("click", () => {
+      this.modal.classList.remove("on");
+    });
+
+    window.onclick = event => {
+      if (event.target == this.modal) {
+        this.modal.classList.remove("on");
+      }
+    };
+
+    window.onkeyup = event => {
+      if (event.keyCode === 27) {
+        this.modal.classList.remove("on");
+      }
+    };
   }
 
   render() {
