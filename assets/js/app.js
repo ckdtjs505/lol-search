@@ -51,6 +51,12 @@ class app {
     $input.addEventListener("keyup", async e => {
       e.preventDefault();
       if (e.keyCode === 13) {
+        // 2020-03-23 [월]
+        // 데이터 로딩중 만들기 css laoder를 구현
+        // https://www.w3schools.com/howto/howto_css_loader.asp
+        this.searchResult.innerHTML = `
+           <div class="loader"> </div>
+        `;
         new SearchImg(
           this.app,
           this.modal,
