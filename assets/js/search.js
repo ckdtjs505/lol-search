@@ -32,14 +32,18 @@ class SearchImg {
     // append를 하면 덮어쓰기 보다는 추가가 되었다.
     // szHtml을 만들어서 안에 있는 html을 덮었느는 형식으로 바꿨다.
     // 내가 원하는 모형은 아닌데 ㅠㅠ 이게 맞는지 모르겠다
-    let szHtml = "";
+
+    // 2020-03-25[화]
+    // 무한 스크롤을 위해 append로 변경
+    // 왜 이전에 내가 계속 덮어쓰기를 고집했는지 이해가 되지 않는다.
+
     this.data.results.forEach(ele => {
       const { id, urls } = ele;
-      szHtml += `
-        <li >
+      const $li = document.createElement("li");
+      $li.innerHTML = `
           <img src="${urls.thumb}" id="${id}" class="img" > </img>
-        </li>`;
+        `;
+      this.$resultSearchBox.append($li);
     });
-    this.$resultSearchBox.innerHTML = szHtml;
   }
 }

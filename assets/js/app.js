@@ -2,6 +2,7 @@ class app {
   constructor(ele) {
     this.app = ele;
     this.data;
+    this.searchValue;
 
     this.modal;
     this.searchInput;
@@ -47,21 +48,43 @@ class app {
   }
 
   bindEventDefault() {
+    // 2020-03-25[수] 무한 스크롤 구현
+    // https://velopert.com/1890
+    // 기존 SearchImg는 데이터를 다시 그리는 형식이므로 제대로 동작 하지 않음
+    window.onscroll = async e => {
+      if (
+        window.innerHeight + Math.ceil(window.scrollY) >=
+        document.body.offsetHeight
+      ) {
+        new SearchImg(
+          this.app,
+          this.modal,
+          (this.data = await getUserData(this.searchValue))
+        );
+      }
+    };
+
     const $input = document.querySelector(".search");
     $input.addEventListener("keyup", async e => {
+      this.searchValue = $input.value;
       e.preventDefault();
       if (e.keyCode === 13) {
         // 2020-03-23 [월]
         // 데이터 로딩중 만들기 css laoder를 구현
         // https://www.w3schools.com/howto/howto_css_loader.asp
+
+        // 로더 생성
         this.searchResult.innerHTML = `
            <div class="loader"> </div>
         `;
         new SearchImg(
           this.app,
           this.modal,
-          (this.data = await getUserData($input.value))
+          (this.data = await getUserData(this.searchValue))
         );
+
+        // 로더 삭제
+        document.querySelector(".loader").remove();
         $input.value = "";
       }
     });
