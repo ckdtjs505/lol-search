@@ -2,6 +2,7 @@ class app {
   constructor(ele) {
     this.app = ele;
     this.data;
+    this.page = 0;
     this.searchValue;
 
     this.modal;
@@ -37,6 +38,17 @@ class app {
     this.app.append(this.modal);
   }
 
+  async searchEngine() {
+    // 2020-03-26[목]
+    // 이전의 코드는 SearchImg를 생성하는 생성자 안에서 this.data를 선언하여 다읽을 때 까지 대기한다.
+    // 로더를 먼저 생성한다. 데이터를 다 읽으면, 그 이후 로더를 삭제한다.
+    // 그리고 데이터를 그려주는 형식으로 구현했다. 아주 맘에 든다. ㅎㅎ
+    this.searchResult.append(this.loader);
+    this.data = await getUserData(++this.page, this.searchValue);
+    this.loader.remove();
+    new SearchImg(this.app, this.modal, this.data);
+  }
+
   // 2020-03-21 모달구현하다가 코드기 너무 별로여서 수정
   // render함수는 화면에 html을 그려준다.
   // 오늘 원래 진행하기로 한 modal 구현, input 구현은 하지 못했다.
@@ -45,22 +57,20 @@ class app {
     this.createSearchInput();
     this.createSerachResult();
     this.createModal();
+    this.loader = document.createElement("div");
+    this.loader.classList.add("loader");
   }
 
   bindEventDefault() {
     // 2020-03-25[수] 무한 스크롤 구현
     // https://velopert.com/1890
     // 기존 SearchImg는 데이터를 다시 그리는 형식이므로 제대로 동작 하지 않음
-    window.onscroll = async e => {
+    window.onscroll = e => {
       if (
         window.innerHeight + Math.ceil(window.scrollY) >=
         document.body.offsetHeight
       ) {
-        new SearchImg(
-          this.app,
-          this.modal,
-          (this.data = await getUserData(this.searchValue))
-        );
+        this.searchEngine();
       }
     };
 
@@ -73,18 +83,11 @@ class app {
         // 데이터 로딩중 만들기 css laoder를 구현
         // https://www.w3schools.com/howto/howto_css_loader.asp
 
-        // 로더 생성
-        this.searchResult.innerHTML = `
-           <div class="loader"> </div>
-        `;
-        new SearchImg(
-          this.app,
-          this.modal,
-          (this.data = await getUserData(this.searchValue))
-        );
+        // 새롭게 검색하는 경우에는 화면을 지운다.
+        this.searchResult.innerHTML = "";
 
-        // 로더 삭제
-        document.querySelector(".loader").remove();
+        this.searchEngine();
+
         $input.value = "";
       }
     });

@@ -37,6 +37,11 @@ class SearchImg {
     // 무한 스크롤을 위해 append로 변경
     // 왜 이전에 내가 계속 덮어쓰기를 고집했는지 이해가 되지 않는다.
 
+    // 2020-03-26[수]
+    // 내가 왜 덮어쓰기를 고집했는지 기억났다. ㅋㅋㅋ
+    // 새로 검색했을씨 아래에 계속 append 되는 문제가 있었다.
+    // 이러한 문제를 해결하기 위해. 새로검색할때마다 .reseltImg div를 지웠다.
+
     this.data.results.forEach(ele => {
       const { id, urls } = ele;
       const $li = document.createElement("li");

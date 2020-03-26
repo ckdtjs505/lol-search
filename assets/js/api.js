@@ -4,10 +4,13 @@ const api_access_key = "NtxoFkRmWdaM8LtARKERKEzZp_h5B14z5jleLrQKeBg";
 // const api_secret_key = "3bvuo6nsh_d40cEw1UQcTrIQNfou0qeCx5Ucq-0FNyo";
 
 const url = "https://api.unsplash.com/photos/";
-function getUserData(name) {
-  return fetch(`https://api.unsplash.com/search/photos?page=1&query=${name}`, {
-    headers: {
-      Authorization: `Client-ID ${api_access_key}`
+function getUserData(page, name) {
+  return fetch(
+    `https://api.unsplash.com/search/photos?page=${page}&query=${name}`,
+    {
+      headers: {
+        Authorization: `Client-ID ${api_access_key}`
+      }
     }
-  }).then(res => res.json());
+  ).then(res => res.json());
 }
