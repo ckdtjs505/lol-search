@@ -38,6 +38,15 @@ class app {
     this.app.append(this.modal);
   }
 
+  // 2020-03-27[금]
+  // 다크모드(어두운 모드) 지원
+  // css를 잘 모르지만 어찌되었든 동작 추후 분석
+  createToggleButton() {
+    this.darkModeToggle = document.createElement("input");
+    this.darkModeToggle.type = "checkbox";
+    this.app.append(this.darkModeToggle);
+  }
+
   async searchEngine() {
     // 2020-03-26[목]
     // 이전의 코드는 SearchImg를 생성하는 생성자 안에서 this.data를 선언하여 다읽을 때 까지 대기한다.
@@ -55,6 +64,7 @@ class app {
 
   buildUI() {
     this.createSearchInput();
+    this.createToggleButton();
     this.createSerachResult();
     this.createModal();
     this.loader = document.createElement("div");
@@ -89,6 +99,17 @@ class app {
         this.searchEngine();
 
         $input.value = "";
+      }
+    });
+
+    // 토글 버튼 동작 영역
+    this.darkModeToggle.addEventListener("change", e => {
+      if (e.target.checked) {
+        document.documentElement.setAttribute("data-theme", "light");
+        console.log("checked");
+      } else {
+        document.documentElement.setAttribute("data-theme", "dark");
+        console.log("no checked");
       }
     });
   }
