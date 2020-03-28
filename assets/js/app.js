@@ -104,12 +104,10 @@ class app {
 
     // 토글 버튼 동작 영역
     this.darkModeToggle.addEventListener("change", e => {
-      if (e.target.checked) {
+      if (!e.target.checked) {
         document.documentElement.setAttribute("data-theme", "light");
-        console.log("checked");
       } else {
         document.documentElement.setAttribute("data-theme", "dark");
-        console.log("no checked");
       }
     });
   }
