@@ -17,11 +17,15 @@ class SearchImg {
 
     // 2020-03-22 api를 재사용하는 방법으로 화살표 함수를 이용하면 된다. 이유 알기
     // modal data를 쉽게 변겅하는 방법을 고민해보자
-    const imgs = document.querySelectorAll("img");
-    imgs.forEach(ele => {
-      ele.addEventListener("click", () => {
-        const eleData = this.data.results.filter(data => data.id === ele.id);
-        new Modal(this.ele, this.modal, eleData[0]);
+
+    // 2020-03-28[토]
+    // 기존 img에 동일한 event가 여러번 달리는 오류 해결..
+    this.data.results.forEach(ele => {
+      // querySelector의 경우 id의 값이 숫자로 시작하는 값을 불러 올 수 없다.
+      // 따라서 querySelector => getElementById로 값을 변경 했다.
+      const img = document.getElementById(ele.id);
+      img.addEventListener("click", () => {
+        new Modal(this.ele, this.modal, ele);
       });
     });
   }
