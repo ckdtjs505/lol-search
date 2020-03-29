@@ -1,4 +1,7 @@
-class app {
+import { getUserData } from "./api";
+import SearchImg from "./search";
+
+export default class app {
   constructor(ele) {
     this.app = ele;
     this.data;

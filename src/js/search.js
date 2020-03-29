@@ -1,4 +1,6 @@
-class SearchImg {
+import Modal from "./modal";
+
+export default class SearchImg {
   constructor(ele, modal, data) {
     this.ele = ele;
     this.modal = modal;

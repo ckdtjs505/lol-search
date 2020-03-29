@@ -1,4 +1,4 @@
-class Modal {
+export default class Modal {
   constructor(ele, modal, data) {
     this.ele = ele;
     this.modal = modal;

@@ -4,7 +4,7 @@ const api_access_key = "NtxoFkRmWdaM8LtARKERKEzZp_h5B14z5jleLrQKeBg";
 // const api_secret_key = "3bvuo6nsh_d40cEw1UQcTrIQNfou0qeCx5Ucq-0FNyo";
 
 const url = "https://api.unsplash.com/photos/";
-function getUserData(page, name) {
+export function getUserData(page, name) {
   return fetch(
     `https://api.unsplash.com/search/photos?page=${page}&query=${name}`,
     {
